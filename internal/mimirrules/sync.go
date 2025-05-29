@@ -92,21 +92,21 @@ func Sync(rulesPath, mimirAddress, mimirID, namespace, tempBaseDir string) error
 		log.Printf("Linting successful for %s", ruleFile)
 	}
 
-	// 4. Load the Mimir rules into Mimir
-	log.Println("Loading Mimir rules into Mimir...")
-	loadArgs := []string{
+	// 4. Sync the Mimir rules with Mimir
+	log.Println("Syncing Mimir rules with Mimir...")
+	syncArgs := []string{
 		"rules",
-		"load",
+		"sync",
 		"--address=" + mimirAddress,
 		"--id=" + mimirID,
-		namespace, // namespace is a positional argument
-	}
-	loadArgs = append(loadArgs, tempRuleFiles...) // Add all rule files from the temp directory
-
-	if output, err := common.ExecuteCommand(mimirtoolCmd, loadArgs...); err != nil {
-		return fmt.Errorf("failed to load Mimir rules to Mimir: %w\nOutput:\n%s", err, output)
+		"--default-namespace=" + namespace, // Use the provided namespace as the default
+		syncTempDir, // Pass the directory containing all rule files
 	}
 
-	log.Println("Mimir rules loaded successfully.")
+	if output, err := common.ExecuteCommand(mimirtoolCmd, syncArgs...); err != nil {
+		return fmt.Errorf("failed to sync Mimir rules with Mimir: %w\nOutput:\n%s", err, output)
+	}
+
+	log.Println("Mimir rules successfully synced.")
 	return nil
 }
