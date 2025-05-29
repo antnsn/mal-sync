@@ -13,7 +13,10 @@ import (
 func ExecuteCommand(name string, args ...string) (string, error) {
 	cmd := exec.Command(name, args...)
 	log.Printf("Executing command: %s %s", name, strings.Join(args, " "))
+	log.Println("Calling cmd.CombinedOutput()...")
 	output, err := cmd.CombinedOutput()
+	log.Printf("cmd.CombinedOutput() returned. Raw error: %v", err)
+
 	// No need to print all output if successful, can be verbose
 	if err != nil {
 		log.Printf("Command failed. Output:\n%s", string(output)) // Log output only on error
