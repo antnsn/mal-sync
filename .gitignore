@@ -1,0 +1,46 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when run with the -o flag
+*.out
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Dependency directories (remove if you use vendoring)
+# vendor/
+
+# IDE-specific files
+.idea/
+.vscode/
+*.iml
+
+# OS-specific files
+.DS_Store
+
+# Local binary name if built locally (adjust if your binary name differs)
+mal-sync
+mal-sync-app
+
+# Environment files
+.env
+*.env
+!.env.example
+
+# Log files
+*.log
+
+# Coverage data
+coverage.*
+profile.out
+
+# Temporary files created by some tools
+*.tmp
