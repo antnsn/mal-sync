@@ -99,8 +99,10 @@ func Sync(rulesPath, mimirAddress, mimirID, namespace, tempBaseDir string) error
 		"sync",
 		"--address=" + mimirAddress,
 		"--id=" + mimirID,
-		"--default-namespace=" + namespace, // Use the provided namespace as the default
-		syncTempDir, // Pass the directory containing all rule files
+		"--rule-dirs=" + syncTempDir, // Pass the directory containing all rule files
+		// The 'namespace' variable (from --rules.namespace flag) is not directly used by 'mimirtool rules sync'
+		// to assign a namespace. Namespaces should be defined within the rule files themselves
+		// or mimirtool will use its default. The --namespaces flag on mimirtool sync is for filtering.
 	}
 
 	if output, err := common.ExecuteCommand(mimirtoolCmd, syncArgs...); err != nil {
