@@ -97,10 +97,11 @@ func Sync(rulesPath, mimirAddress, mimirID, namespace, tempBaseDir string) error
 	loadArgs := []string{
 		"rules",
 		"load",
-		namespace, // The namespace to load rules into
+		"--address=" + mimirAddress,
+		"--id=" + mimirID,
+		namespace, // namespace is a positional argument
 	}
-	loadArgs = append(loadArgs, tempRuleFiles...) // Add all copied rule files
-	loadArgs = append(loadArgs, "--address="+mimirAddress, "--id="+mimirID)
+	loadArgs = append(loadArgs, tempRuleFiles...) // Add all rule files from the temp directory
 
 	if output, err := common.ExecuteCommand(mimirtoolCmd, loadArgs...); err != nil {
 		return fmt.Errorf("failed to load Mimir rules to Mimir: %w\nOutput:\n%s", err, output)
