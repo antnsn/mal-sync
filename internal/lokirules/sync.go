@@ -99,8 +99,8 @@ func Sync(rulesPath, lokiAddress, orgID, tempBaseDir string) error {
 		"rules",
 		"sync",
 		"--address=" + lokiAddress,
-		"--org-id=" + orgID,
-		"--rule-dirs=" + syncTempDir, // Point to the temporary directory containing all rule files
+		"--id=" + orgID, // lokitool rules sync uses --id for tenant ID
+		"--rule-dirs=" + syncTempDir,
 	}
 
 	if len(tempRuleFiles) == 0 {
