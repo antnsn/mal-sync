@@ -7,8 +7,8 @@ import (
 	"os"
 
 	"github.com/antnsn/mal-sync/internal/alertmanager"
-	"github.com/antnsn/mal-sync/internal/mimirrules"
 	"github.com/antnsn/mal-sync/internal/lokirules"
+	"github.com/antnsn/mal-sync/internal/mimirrules"
 )
 
 func main() {
@@ -178,4 +178,3 @@ func main() {
 		log.Fatalf("Unknown subcommand: %s. Expected 'alertmanager', 'mimir-rules', or 'loki-rules'.", os.Args[1])
 	}
 }
-
