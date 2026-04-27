@@ -45,7 +45,7 @@ RUN echo "Downloading lokitool from ${LOKITOOL_DOWNLOAD_URL}..." && \
 
 # Example: Multi-stage build for your Go application
 # Stage 1: Build the Go application
-FROM golang:1.22-alpine AS builder
+FROM golang:1.26-alpine AS builder
 
 WORKDIR /app
 
